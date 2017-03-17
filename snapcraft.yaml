@@ -113,19 +113,89 @@ apps:
     ranlib:
         command: ranlib
 
+    byobu:
+        command: byobu
+
     set-path:
         command: set-path
+
+    byobu-screen:
+        command: byobu-screen
+    ctail:
+        command: ctail
+    byobu-disable:
+        command: byobu-disable
+    byobu-ugraph:
+        command: byobu-ugraph
+    purge-old-kernels:
+        command: purge-old-kernels
+    byobu-select-session:
+        command: byobu-select-session
+    byobu-ulevel:
+        command: byobu-ulevel
+    byobu-quiet:
+        command: byobu-quiet
+    byobu-ctrl-a:
+        command: byobu-ctrl-a
+    byobu-export:
+        command: byobu-export
+    byobu-layout:
+        command: byobu-layout
+    vigpg:
+        command: vigpg
+    byobu-launcher-uninstall:
+        command: byobu-launcher-uninstall
+    byobu-select-backend:
+        command: byobu-select-backend
+    byobu:
+        command: byobu
+    byobu-janitor:
+        command: byobu-janitor
+    byobu-enable-prompt:
+        command: byobu-enable-prompt
+    byobu-keybindings:
+        command: byobu-keybindings
+    col1:
+        command: col1
+    byobu-launcher:
+        command: byobu-launcher
+    byobu-status:
+        command: byobu-status
+    byobu-launcher-install:
+        command: byobu-launcher-install
+    manifest:
+        command: manifest
+    byobu-prompt:
+        command: byobu-prompt
+    byobu-launch:
+        command: byobu-launch
+    byobu-enable:
+        command: byobu-enable
+    byobu-status-detail:
+        command: byobu-status-detail
+    byobu-disable-prompt:
+        command: byobu-disable-prompt
+    byobu-select-profile:
+        command: byobu-select-profile
+    byobu-config:
+        command: byobu-config
+    byobu-shell:
+        command: byobu-shell
+    byobu-reconnect-sockets:
+        command: byobu-reconnect-sockets
+    byobu-silent:
+        command: byobu-silent
+    wifi-status:
+        command: wifi-status
 parts:
     tools:
         source: .
         plugin: dump
-        stage-packages: [wget, nano, silversearcher-ag, mc, pastebinit, curl, binutils]
+        stage-packages: [wget, nano, silversearcher-ag, mc, pastebinit, curl, binutils, byobu, usbutils]
         filesets:
           fat:
             - -usr/lib/gcc
             - -usr/share
-#            - -etc
-#            - -var
         stage:
             - $fat
         prime:
@@ -133,13 +203,3 @@ parts:
         organize:
             connect-interfaces: bin/connect-interfaces
             set-path: bin/set-path
-
-    usbutils:
-        source: https://github.com/gregkh/usbutils.git
-        plugin: autotools
-        build-packages: [libusb-1.0-0, gawk]
-        stage-packages: [libusb-1.0-0]
-        prepare: |
-            git submodule init
-            git submodule update
-            autoreconf --install --symlink
